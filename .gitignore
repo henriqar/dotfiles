@@ -1,5 +1,8 @@
 created by https://www.gitignore.io/api/vim
 
+## .cfg ##
+.cfg
+
 ### Vim ###
 # swap
 [._]*.s[a-v][a-z]
