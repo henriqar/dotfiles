@@ -64,3 +64,13 @@ $ config push
 ```
 
 But remember that you will be versioning this files inside the bare repository. This will not push automatically to the remote git repository (you will need to take care of this step).
+
+## Pushing Back to Remote Origin
+
+To push changes from your bare repo back to the remote origin you simply execute:
+
+```
+$ config push origin master
+```
+
+
