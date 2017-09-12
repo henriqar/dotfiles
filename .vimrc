@@ -58,6 +58,9 @@
 " ref: https://dougblack.io/words/a-good-vimrc.html                   
 "
 
+" Set moeline for vims that are not compiled with the modeline option
+set modeline
+
 " Colors {{{
 
 syntax enable
