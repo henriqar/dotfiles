@@ -18,13 +18,13 @@ $     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 First we need to associate the bare repository to the alias used to configure the `$HOME` repository:
 
 ```
-$ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+$ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 ```
 
 Now we clone the dotfiles to the bare repository assigned to it:
 
 ```
-$ git clone --bare https://github.com/R3bs/dotfiles $HOME/.cfg
+$ git clone --bare https://github.com/R3bs/dotfiles $HOME/.dotfiles
 ```
 
 Set the git status to not show untracked files (because there is a lot of files inside ther `$HOME` and it would pollute the information shown).
