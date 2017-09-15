@@ -1,0 +1,187 @@
+# This file controls the behaviour of line input editing for programs that 
+# use the GNU Readline library.  Existing programs include FTP, Bash, and 
+# GDB.
+#
+# You can re-read the inputrc file with C-x C-r.
+# Lines beginning with '#' are comments.
+#
+# First, include any system-wide bindings and variable assignments from 
+# /etc/Inputrc
+$include /etc/Inputrc
+
+
+# ****************************************************************************
+#																VARIABLES
+# ****************************************************************************
+
+# Controls what happens when Readline wants to ring the terminal bell. If set 
+# to ‘none’, Readline never rings the bell. If set to ‘visible’, Readline 
+# uses a visible bell if one is available. If set to ‘audible’ (the default), 
+# Readline attempts to ring the terminal's bell.
+set bell-style visible
+
+# If set to ‘on’, Readline attempts to bind the control characters treated 
+# specially by the kernel's terminal driver to their Readline equivalents.
+set bind-tty-special-chars on
+
+# The string to insert at the beginning of the line when the insert-comment 
+# command is executed. The default value is "#".
+set comment-begin "#"
+
+# If set to ‘on’, Readline performs filename matching and completion in a 
+# case-insensitive fashion. The default value is ‘off’.
+set completion-ignore-case on
+
+# When set to a value greater than zero, common prefixes longer than this 
+# value are replaced with an ellipsis when displaying possible completions. 
+# e.g. set completion-prefix-display-length 4
+set completion-prefix-display-length 0
+
+# The number of possible completions that determines when the user is asked 
+# whether the list of possibilities should be displayed. If the number of 
+# possible completions is greater than this value, Readline will ask the 
+# user whether or not he wishes to view them; otherwise, they are simply 
+# listed. This variable must be set to an integer value greater than or equal 
+# to 0. A negative value means Readline should never ask. The default limit is 100.
+set completion-query-items 150
+
+# If set to ‘on’, Readline will convert characters with the eighth bit set 
+# to an ascii key sequence by stripping the eighth bit and prefixing an <ESC> 
+# character, converting them to a meta-prefixed key sequence. The default 
+# value is ‘on’.
+set convert-meta off
+
+# If set to ‘On’, Readline will inhibit word completion. Completion characters 
+# will be inserted into the line as if they had been mapped to self-insert. 
+# The default is ‘off’.
+set disable-completion off
+
+# The editing-mode variable controls which default set of key bindings is used. 
+# By default, Readline starts up in Emacs editing mode, where the keystrokes are 
+# most similar to Emacs. This variable can be set to either ‘emacs’ or ‘vi’.
+set editing-mode emacs
+
+# When set to ‘on’, on operating systems that indicate they support it, readline 
+# echoes a character corresponding to a signal generated from the keyboard. The 
+# default is ‘on’.
+set echo-control-characters on
+
+# When set to ‘on’, Readline will try to enable the application keypad when it 
+# is called. Some systems need this to enable the arrow keys. The default is ‘off’.
+set enable-keypad off
+
+# When set to ‘on’, Readline will try to enable any meta modifier key the terminal 
+# claims to support when it is called. On many terminals, the meta key is used to 
+# send eight-bit characters. The default is ‘on’.
+set enable-meta-key on
+
+# If set to ‘on’, tilde expansion is performed when Readline attempts word completion. 
+# The default is ‘off’.
+set expand-tilde off
+
+# If set to ‘on’, the history code attempts to place the point (the current cursor 
+# position) at the same location on each history line retrieved with previous-history 
+# or next-history. The default is ‘off’.
+set history-preserve-point on
+
+# Set the maximum number of history entries saved in the history list. If set to zero, 
+# the number of entries in the history list is not limited.
+set history-size 1000
+
+# This variable can be set to either ‘on’ or ‘off’. Setting it to ‘on’ means that the 
+# text of the lines being edited will scroll horizontally on a single screen line when 
+# they are longer than the width of the screen, instead of wrapping onto a new screen 
+# line. By default, this variable is set to ‘off’.
+set horizontal-scroll-mode off
+
+# If set to ‘on’, Readline will enable eight-bit input (it will not clear the eighth 
+# bit in the characters it reads), regardless of what the terminal claims it can support. 
+# The default value is ‘off’. The name meta-flag is a synonym for this variable.
+set input-meta on
+
+# The string of characters that should terminate an incremental search without subsequently 
+# executing the character as a command. If this variable has not been given a value, 
+# the characters <ESC> and C-J will terminate an incremental search.
+# set isearch-terminators 
+
+# Sets Readline's idea of the current keymap for key binding commands. Acceptable keymap 
+# names are emacs, emacs-standard, emacs-meta, emacs-ctlx, vi, vi-move, vi-command, and 
+# vi-insert. vi is equivalent to vi-command; emacs is equivalent to emacs-standard. The 
+# default value is emacs. The value of the editing-mode variable also affects the default 
+# keymap.
+# set keymap vi-command
+
+# If set to ‘on’, completed directory names have a slash appended. The default is ‘on’.
+set mark-directories on
+
+# This variable, when set to ‘on’, causes Readline to display an asterisk (‘*’) at the 
+# start of history lines which have been modified. This variable is ‘off’ by default.
+set mark-modified-lines off
+
+# If set to ‘on’, completed names which are symbolic links to directories have a slash 
+# appended (subject to the value of mark-directories). The default is ‘off’.
+set mark-symlinked-directories off
+
+# This variable, when set to ‘on’, causes Readline to match files whose names begin 
+# with a ‘.’ (hidden files) when performing filename completion, unless the leading ‘.’ 
+# is supplied by the user in the filename to be completed. This variable is ‘on’ by 
+# default.
+set match-hidden-files on
+
+# If set to ‘on’, menu completion displays the common prefix of the list of possible 
+# completions (which may be empty) before cycling through the list. The default is ‘off’.
+set menu-complete-display-prefix on
+
+# If set to ‘on’, Readline will display characters with the eighth bit set directly 
+# rather than as a meta-prefixed escape sequence. The default is ‘off’.
+set output-meta on
+
+# If set to ‘on’, Readline uses an internal more-like pager to display a screenful 
+# of possible completions at a time. This variable is ‘on’ by default.
+set page-completions on
+
+# If set to ‘on’, Readline will display completions with matches sorted horizontally 
+# in alphabetical order, rather than down the screen. The default is ‘off’.
+set print-completions-horizontally off
+
+# If set to ‘on’, Readline will undo all changes to history lines before returning 
+# when accept-line is executed. By default, history lines can be modified and retain 
+# individual undo lists across calls to readline. The default is ‘off’.
+set revert-all-at-newline off
+
+# This alters the default behavior of the completion functions. If set to ‘on’, words 
+# which have more than one possible completion cause the matches to be listed immediately 
+# instead of ringing the bell. The default value is ‘off’.
+set show-all-if-ambiguous on
+
+# This alters the default behavior of the completion functions in a fashion similar to 
+# show-all-if-ambiguous. If set to ‘on’, words which have more than one possible completion 
+# without any possible partial completion (the possible completions don't share a common 
+# prefix) cause the matches to be listed immediately instead of ringing the bell. 
+# The default value is ‘off’.
+set show-all-if-unmodified on
+
+# If set to ‘on’, this alters the default completion behavior when inserting a single 
+# match into the line. It's only active when performing completion in the middle of a 
+# word. If enabled, readline does not insert characters from the completion that 
+# match characters after point in the word being completed, so portions of the word 
+# following the cursor are not duplicated. For instance, if this is enabled, 
+# attempting completion when the cursor is after the ‘e’ in ‘Makefile’ will result in 
+# ‘Makefile’ rather than ‘Makefilefile’, assuming there is a single possible completion. 
+# The default value is ‘off’.
+set skip-completed-text off
+
+# If set to ‘on’, a character denoting a file's type is appended to the filename 
+# when listing possible completions. The default is ‘off’. 
+set visible-stats off
+
+
+# *****************************************************************************
+#																		BINDS
+# *****************************************************************************
+
+# An old-style binding.  This happens to be the default.
+TAB: complete
+
+
+
