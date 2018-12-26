@@ -1,0 +1,59 @@
+# dont display license and version information
+startup_message off
+
+# dont log new windows to utmp 
+deflogin off
+
+# automatically detach on terminal hangup (so that one can attach again and 
+# continue working )
+autodetach on
+
+# ignore case on searches in copy-mode
+ignorecase on
+
+# assume UTF-8 encoding
+defutf8 on
+
+# use 256-term-color palette
+term screen-256color  
+
+# disable flow control as it conflicts with ctrl-S prefix
+defflow off
+
+# erase background with current bg color
+defbce on
+
+# remove delay after pressing escape key inside screen
+maptimeout 0
+
+# start screen with a new layout (none by default)
+# layout new initial
+
+# wait up to three seconds before hiding last message (default is 5)
+msgwait 3
+
+# enable alternative screen
+altscreen on
+
+# use big scrollback buffer
+defscrollback 5000
+
+# supress trailing blank lines when scrolling up text into the history
+compacthist on
+
+# status line with current window highlighted
+hardstatus alwayslastline 
+hardstatus string "%{= KW} %H %{= Kw}|%{-} %-Lw%{= bW}%n%f %t%{-}%+Lw %=%C%a %Y-%M-%d"
+
+# vim like navigation between windows
+bind h focus left
+bind j focus down
+bind k focus up
+bind l focus right
+
+# reload configuration file
+bind r source ~/.screenrc
+
+# split vertically
+bind | eval 'split -v' 'focus right' screen
+
