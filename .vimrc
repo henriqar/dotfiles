@@ -78,19 +78,26 @@ let g:solarized_termcolors=256
 
 set backspace=indent,eol,start
 
+nnoremap <C-i> <C-a>
+nnoremap <C-d> <C-x>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mouse support
 set ttyfast
 set mouse=a
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remappings
+:imap ;; <ESC>
+
 " }}}
 
 " Spaces and Tabs {{{
 
-set tabstop=2		" 2 space tab
+set tabstop=4		" 4 space tab
 set expandtab		" changes tabs for spaces
-set softtabstop=2	" 2 space tab
-set shiftwidth=2
+set softtabstop=4	" 4 space tab
+set shiftwidth=4
 set autoindent
 
 " }}}
@@ -170,6 +177,12 @@ call plug#begin('~/.vim/plugged')
     " ALE - Asynchronous Lint Engine
     Plug 'w0rp/ale'
 
+    " SystemVerilog/ Verilog Syntax
+    Plug 'vhda/verilog_systemverilog.vim'
+
+    " Vim Fugitive
+    Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
 " }}}
@@ -178,6 +191,16 @@ call plug#end()
 
 " to show airline colors
 set laststatus=2
+
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
 
 " }}}
 
