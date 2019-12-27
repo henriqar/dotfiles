@@ -116,7 +116,6 @@ set splitright
 
 " Searching {{{
 
-set ignorecase		" ignore case when searching
 set incsearch		" search as characters are entered
 set showmatch       " show mathcing in text
 
@@ -130,6 +129,8 @@ set showmatch       " show mathcing in text
 " ref: http://vim.wikia.com/wiki/Remove_unwanted_spaces#Automatically_removing_all_trailing_whitespace
 "
 autocmd BufWritePre *.py :%s/\s\+$//e
+autocmd BufWritePre *.sv :%s/\s\+$//e
+autocmd BufWritePre *.v :%s/\s\+$//e
 
 " }}}
 
@@ -162,26 +163,32 @@ endfunc
 
 call plug#begin('~/.vim/plugged')
 
-    " Lightline plugin
-    Plug 'itchyny/lightline.vim'
+    " Commentary plugin
+    Plug 'tpope/vim-commentary'
 
-    " SOlarized color theme
-    Plug 'altercation/vim-colors-solarized'
+    " Vim Fugitive
+    Plug 'tpope/vim-fugitive'
+
+    " Vim surroundings
+    Plug 'tpope/vim-surround'
 
     " NERDTree file tree
     Plug 'scrooloose/nerdtree'
 
-    " Commentary plugin
-    Plug 'tpope/vim-commentary'
+    " Lightline plugin
+    Plug 'itchyny/lightline.vim'
+
+    " Tmux vim integrated navigation
+    Plug 'christoomey/vim-tmux-navigator'
+
+    " SOlarized color theme
+    Plug 'altercation/vim-colors-solarized'
 
     " ALE - Asynchronous Lint Engine
     Plug 'w0rp/ale'
 
     " SystemVerilog/ Verilog Syntax
     Plug 'vhda/verilog_systemverilog.vim'
-
-    " Vim Fugitive
-    Plug 'tpope/vim-fugitive'
 
 call plug#end()
 

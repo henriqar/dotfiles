@@ -2,7 +2,7 @@
 
 This document sumerizes my methodology to version my configuration files (it is based on [this post](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/)). 
 
-Before starting the procedure we need to setup the plugin manager used with this `.vimrc`.
+Before starting the procedure we need to setup the plugin manager used with this `.vimrc` and the plugin manager for `tmux`.
 
 ## Plugin Manager Installation
 
@@ -12,6 +12,14 @@ To configure `vim` we need to install the plugin manager (here we use the VimPlu
 $ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \ 
 $     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
+
+For `tmux` I use the TMP, which I need to clone to my `$HOME`.
+
+```
+$ git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+```
+
+After getting the TPM for `tmux` we just need to install the plugin inside `tmux`. For that, while inside a running `tmux` session we execute `prefix` + <kbd>I</kbd> to fetch the `tmux` plugin.
 
 ## Building the Configuration Bare Repository
 
