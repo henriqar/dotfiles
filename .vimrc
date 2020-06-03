@@ -78,6 +78,8 @@ let g:solarized_termcolors=256
 
 set backspace=indent,eol,start
 
+filetype plugin indent on
+
 nnoremap <C-i> <C-a>
 nnoremap <C-d> <C-x>
 
@@ -85,6 +87,10 @@ nnoremap <C-d> <C-x>
 " Mouse support
 set ttyfast
 set mouse=a
+
+" Set no bells
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remappings
@@ -94,10 +100,10 @@ set mouse=a
 
 " Spaces and Tabs {{{
 
-set tabstop=4		" 4 space tab
+" set tabstop=4		" 4 space tab
 set expandtab		" changes tabs for spaces
-set softtabstop=4	" 4 space tab
-set shiftwidth=4
+" set softtabstop=4	" 4 space tab
+" set shiftwidth=4
 set autoindent
 
 " }}}

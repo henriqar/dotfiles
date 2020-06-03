@@ -1,5 +1,6 @@
 [user]
 	name = Henrique A. Rusa
+	email = henrique.rusa@gmail.com
 	; email = 
 [core]
 	editor = vim
