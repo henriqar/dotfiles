@@ -196,6 +196,9 @@ call plug#begin('~/.vim/plugged')
     " SystemVerilog/ Verilog Syntax
     Plug 'vhda/verilog_systemverilog.vim'
 
+    "DoGe
+    Plug 'kkoomen/vim-doge'
+
 call plug#end()
 
 " }}}
