@@ -1,5 +1,5 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Mantainer: R3bs
+" Mantainer: henriqar
 "
 " Version: 1.0
 "
@@ -20,8 +20,6 @@
 "       * Vim Plug Input:
 "
 "           - Plugin: Lightline
-"           - Plugin: Solarized Colors
-"           - Plugin: NERDTree
 "           - Plugin: Commentary
 "
 
@@ -66,11 +64,10 @@ set modeline
 syntax enable
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" solarized color theme
+"  color theme
 "
-" ref: http://ethanschoonover.com/solarized/vim-colors-solarized
-set background=dark
-let g:solarized_termcolors=256
+
+colorscheme desert
 
 " }}}
 
@@ -79,9 +76,6 @@ let g:solarized_termcolors=256
 set backspace=indent,eol,start
 
 filetype plugin indent on
-
-nnoremap <C-i> <C-a>
-nnoremap <C-d> <C-x>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mouse support
@@ -106,6 +100,8 @@ set expandtab		" changes tabs for spaces
 " set shiftwidth=4
 set autoindent
 
+autocmd Filetype cpp setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+
 " }}}
 
 " UI Layout {{{
@@ -122,7 +118,7 @@ set splitright
 
 " Searching {{{
 
-set incsearch		" search as characters are entered
+set incsearch       " search as characters are entered
 set showmatch       " show mathcing in text
 
 " }}}
@@ -137,6 +133,8 @@ set showmatch       " show mathcing in text
 autocmd BufWritePre *.py :%s/\s\+$//e
 autocmd BufWritePre *.sv :%s/\s\+$//e
 autocmd BufWritePre *.v :%s/\s\+$//e
+
+autocmd BufNewFile,BufRead *.u setfiletype uwu
 
 " }}}
 
@@ -178,26 +176,8 @@ call plug#begin('~/.vim/plugged')
     " Vim surroundings
     Plug 'tpope/vim-surround'
 
-    " NERDTree file tree
-    Plug 'scrooloose/nerdtree'
-
     " Lightline plugin
     Plug 'itchyny/lightline.vim'
-
-    " Tmux vim integrated navigation
-    Plug 'christoomey/vim-tmux-navigator'
-
-    " SOlarized color theme
-    Plug 'altercation/vim-colors-solarized'
-
-    " ALE - Asynchronous Lint Engine
-    Plug 'w0rp/ale'
-
-    " SystemVerilog/ Verilog Syntax
-    Plug 'vhda/verilog_systemverilog.vim'
-
-    "DoGe
-    Plug 'kkoomen/vim-doge'
 
 call plug#end()
 
@@ -220,30 +200,26 @@ let g:lightline = {
 
 " }}}
 
-" Plugin: Solarized Colors {{{
-
-" It must be after the vim plug call and be separated of the background
-" color and syntax on
-"
-" ref: https://github.com/altercation/vim-colors-solarized/issues/104
-colorscheme solarized
-
-" }}}
-
-" Plugin: NERDTree {{{
+" Plugin: Netrw {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File Tree
 "
+" set netrw windows size as 25%
+let g:netrw_winsize = 25
 
-autocmd StdinReadPre * let s:std_in=1
+"set list style
+let g:netrw_liststyle = 3
 
-" How can I open a NERDTree automatically when vim starts up if no files were
-" specified?
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" remove banner from netrw window
+let g:netrw_banner = 0        
 
-" How can I open NERDTree automatically when vim starts up on opening a
-" directory?
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" open files in previous window
+let g:netrw_browse_split = 4  
+
+augroup ProjectDrawer
+        autocmd!
+        autocmd VimEnter * :Vexplore
+augroup END
 
 " }}}
 

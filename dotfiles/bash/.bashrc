@@ -32,8 +32,6 @@ ulimit -S -c 0     # Don't want any coredumps.
 set -o notify
 set -o noclobber
 set -o ignoreeof
-#set -o nounset
-#set -o xtrace     # Useful for debuging.
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options

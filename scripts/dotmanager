@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+
+import argparse
+import logging
+import os
+import pathlib
+import sys
+
+def link_to(src, tgt, remove_existing_link=False):
+    """ Link src to a tgt, removing the existing link if requested
+
+    Arguments:
+        src: source path to be linked
+        tgt: target to link to source
+        remove_existing_link: bool to indicate if previous link must be removed
+
+    """
+
+    # first verify if they exist
+    path_src = pathlib.Path(src)
+    if not pathlib.Path.exists(path_src):
+        logging.error('Path %s do not exist', str(path_src))
+        exit(1)
+    path_tgt = pathlib.Path(tgt)
+
+    try:
+        if pathlib.Path.exists(path_tgt):
+            if remove_existing_link:
+                path_tgt.unlink()
+            else:
+                logging.error('Error: linking to existing symbolic link %s',
+                        str(path_tgt.name))
+                exit(1)
+        path_tgt.symlink_to(path_src)
+        logging.info(' linked %s to %s', path_src.as_uri(), path_tgt.as_uri())
+    except Exception as e:
+        logging.error('Internal Error: ', e.msg())
+
+
+def main(args):
+    """ Main execution script function
+
+    Arguments:
+        args: CLI arguments as inputs
+
+    """
+
+    # basic logging for reporting what is happening
+    logging.basicConfig(format=' %(message)s', level=logging.INFO)
+
+    # main parser
+    parser = argparse.ArgumentParser(description='Dotfiles Manager')
+
+    # get the subparser reference
+    subparsers = parser.add_subparsers(help='sub-command help', dest='command')
+
+    # create the parser for the "linker" command
+    linker = subparsers.add_parser('linker', 
+            help='Command to link directories/files to desired paths')
+    linker.add_argument('-s','--source', type=str, help='Source to be linked', 
+            required=True)
+    linker.add_argument('-t','--target', type=str, help='Target name/path', 
+            required=True)
+    linker.add_argument('-r','--relink', action='store_true', 
+            help='Force relink deleting previuos link if existent')
+
+    # create the parser for the "installer" command
+    installer = subparsers.add_parser('installer', 
+            help='Command to install desired packages')
+
+    group = installer.add_mutually_exclusive_group(required=False)
+    group.add_argument('-c','--curl', type=str, help='Address to be curled')
+    group.add_argument('-g','--git', type=str, help='Git address to be cloned')
+
+    installer.add_argument('-t','--target', type=str, help='Target name/path', 
+            required=True)
+
+    # parse arguments
+    args = parser.parse_args()
+
+    if args.command == 'linker':
+        link_to(args.source, args.target, remove_existing_link=args.relink)
+
+
+if __name__ == '__main__':
+    main(sys.argv)
