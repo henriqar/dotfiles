@@ -1,6 +1,5 @@
 [user]
 	name = Henrique A. Rusa
-	email = henrique.rusa@gmail.com
 	; email = 
 [core]
 	editor = vim
@@ -13,7 +12,7 @@
 ; 	smtppass = 
 ; 	smtpserverport = 587
 [web]
-	browser = google-chrome
+	browser = firefox
 ; [instaweb]
 	; httpd = apache2 -f
 ; [rerere]

@@ -179,6 +179,9 @@ call plug#begin('~/.vim/plugged')
     " Lightline plugin
     Plug 'itchyny/lightline.vim'
 
+    " fuzzy file finder
+    Plug 'ctrlpvim/ctrlp.vim'
+
 call plug#end()
 
 " }}}
@@ -204,21 +207,52 @@ let g:lightline = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File Tree
 "
+
+" prevent move file errors
+let g:netrw_keepdir = 0
+
 " set netrw windows size as 25%
 let g:netrw_winsize = 25
-
-"set list style
-let g:netrw_liststyle = 3
 
 " remove banner from netrw window
 let g:netrw_banner = 0        
 
+" set list style
+let g:netrw_liststyle = 3
+
+" change copy command to support recursive copy
+let g:netrw_localcopydircmd = 'cp -r'
+
 " open files in previous window
 let g:netrw_browse_split = 4  
 
-augroup ProjectDrawer
+"bind netrw with a different command to be easier to use
+nnoremap <leader>dd :Lexplore %:p:h<CR>
+nnoremap <Leader>da :Lexplore<CR>
+
+"lets change netrws navigation
+function! NetrwMapping()
+        " go back in history
+        nmap <buffer> H u
+        " will go up in history
+        nmap <buffer> h -^
+        "will open a directory or a file
+        nmap <buffer> l <CR>
+        
+        " toggle dotfiles
+        nmap <buffer> . gh
+        " will close the previw window
+        nmap <buffer> P <C-w>z
+        
+        " will open a file and close netrw
+        nmap <buffer> L <CR>:Lexplore<CR>
+        "will just close netrw
+        nmap <buffer> <Leader>dd :Lexplore<CR>
+endfunction
+
+augroup netrw_mapping
         autocmd!
-        autocmd VimEnter * :Vexplore
+        autocmd filetype netrw call NetrwMapping()
 augroup END
 
 " }}}
