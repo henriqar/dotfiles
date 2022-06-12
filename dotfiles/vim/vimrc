@@ -182,6 +182,9 @@ call plug#begin('~/.vim/plugged')
     " fuzzy file finder
     Plug 'ctrlpvim/ctrlp.vim'
 
+    "systemverilog syntax
+    Plug 'vhda/verilog_systemverilog.vim'
+
 call plug#end()
 
 " }}}

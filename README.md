@@ -1,84 +1,34 @@
+
+
 # Dotfiles Management Repository
 
-This document sumerizes my methodology to version my configuration files (it is based on [this post](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/)). 
+Gathered within this repository is all configuration files (dotfiles) that I use on a daily basis (or used at some point in time). A Makefile composed of different targets was written to facilitate the installation (and removal) of each dotfile. All available targets are listed below.
 
-Before starting the procedure we need to setup the plugin manager used with this `.vimrc` and the plugin manager for `tmux`.
+|target|description|
+|------|-----------|
+| `install_vim` | install `.vimrc`, `.vim/` folder, and some `ftplugin` stuff |
+| `force_install_vim` | force installation of `vim` stuff, even if already exists |
+| `clean_vim` | remove all files related to the `vim` installation |
+| `install_tmux` | installs `.tmux.conf` file |
+| `force_install_tmux` | force installation of `.tmux.conf` |
+| `clean_tmux` | remove `.tmux.conf` file installed |
+| `install_screen` | installs `.screenrc` file |
+| `force_install_screen` | force installation of `.screenrc` file |
+| `clean_screen` | remove `.screenrc` file |
+| `install_gitconfig` | installs `.gitconfig` file |
+| `force_install_gitconfig` | forces installation of `.gitconfig` file |
+| `clean_gitconfig` | remove `.gitconfig` file |
+| `install_all` | install all targets available (`gitconfig`, `vim`, `tmux`, and `screen`)|
+| `clean_all` | remove all dotfiles related to (`gitconfig`, `vim`, `tmux`, and `screen`)|
 
-## Plugin Manager Installation
+## Additional Steps
 
-To configure `vim` we need to install the plugin manager (here we use the VimPlug manager).
+After running all necessary targets, one must execute some internal tool commands to setup the final environment. Targets `vim` and `tmux` need to install a different set of internal plugins.
 
-```
-$ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \ 
-$     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```
+### Vim
 
-For `tmux` I use the TMP, which I need to clone to my `$HOME`.
+Execute `vim` for the fisrt time and run `:PlugInstall` to install all plugins defined in `.vimrc` file and restart `vim` after it is done.
 
-```
-$ git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-```
+### Tmux
 
-After getting the TPM for `tmux` we just need to install the plugin inside `tmux`. For that, while inside a running `tmux` session we execute `prefix` + <kbd>I</kbd> to fetch the `tmux` plugin.
-
-## Building the Configuration Bare Repository
-
-First we need to associate the bare repository to the alias used to configure the `$HOME` repository:
-
-```
-$ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-```
-
-Now we clone the dotfiles to the bare repository assigned to it:
-
-```
-$ git clone --bare https://github.com/R3bs/dotfiles $HOME/.dotfiles
-```
-
-Set the git status to not show untracked files (because there is a lot of files inside ther `$HOME` and it would pollute the information shown).
-
-```
-$ config config --local status.showUntrackedFiles no
-```
-
-Checkout the remote repo content to the bare repo we are using in `$HOME`:
-
-```
-$ config checkout
-```
-
-At this moment an error can occur indicating something as:
-
-```
-$ error: The following untracked working tree files would be overwritten by checkout:
-$     .bashrc
-$     .gitignore
-$ Please move or remove them before you can switch branches.
-$ Aborting
-```
-This is because your `$HOME` folder might already have some stock configuration files which would be overwritten. 
-
-The solution is simple: back up the files or remove them.
-
-After the configuration above has been executed all files within the `$HOME` folder could be versioned with all git commands, replacing git with the `config` alias, like:
-
-```
-$ config status
-$ config add .vimrc
-$ config commit -m "Add vimrc"
-$ config add .bashrc
-$ config commit -m "Add bashrc"
-$ config push
-```
-
-But remember that you will be versioning this files inside the bare repository. This will not push automatically to the remote git repository (you will need to take care of this step).
-
-## Pushing Back to Remote Origin
-
-To push changes from your bare repo back to the remote origin you simply execute:
-
-```
-$ config push origin master
-```
-
-
+Execute `tmux` for the first time and run `<prefix> + I` to install `tmux` plugin manager and restart `tmux` after it is done.

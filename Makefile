@@ -37,11 +37,19 @@ test_colors:
 	@echo "${BLUE}BLUE${RESET}"
 	@echo "${WHITE}WHITE${RESET}"
 
+
+###########################################
+# Setup for all installations
+###########################################
+
 # install all dotfiles available
 .PHONY: install_all
-install_all :
-	install_tmux \
-	install_vim
+install_all : install_tmux install_vim install gitconfig install_screen
+
+# clean all dotfiles available
+.PHONY: clean_all
+clean_all : clean_tmux clean_vim clean_gitconfig clean_screen
+
 
 ###########################################
 # Setup for VIM
@@ -80,6 +88,7 @@ clean_vim :
 	@rm -rf ${HOME}/.vim/
 	@echo "$(GREEN)Removed$(RESET) .vim/"
 
+
 ###########################################
 # Setup for TMUX
 ###########################################
@@ -107,6 +116,7 @@ clean_tmux :
 	@rm -rf ${HOME}/.tmux/
 	@echo "$(GREEN)Removed$(RESET) .tmux folder"
 
+
 ###########################################
 # Setup for SCREEN
 ###########################################
@@ -114,14 +124,18 @@ clean_tmux :
 .PHONY: install_screen
 install_screen :
 	$(call linker, ${CURDIR}/dotfiles/screen/screenrc, ${HOME}/.screenrc)
+	@echo "$(GREEN)Installed$(RESET) .screenrc"
 
 .PHONY: force_install_screen
 force_install_screen :
 	$(call forced_linker, ${CURDIR}/dotfiles/screen/screenrc, ${HOME}/.screenrc)
+	@echo "$(YELLOW)Forced$(RESET) $(GREEN)Install$(RESET) .screenrc"
 
 .PHONY: clean_screen
 clean_screen :
-	@rm -f ${HOME}/.screen
+	@rm -f ${HOME}/.screenrc
+	@echo "$(GREEN)Removed$(RESET) .screenrc"
+
 
 ###########################################
 # Setup for GIT
