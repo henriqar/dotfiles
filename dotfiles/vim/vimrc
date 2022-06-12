@@ -226,8 +226,11 @@ let g:netrw_liststyle = 3
 " change copy command to support recursive copy
 let g:netrw_localcopydircmd = 'cp -r'
 
-" open files in previous window
+" open files to the right of the browser
 let g:netrw_browse_split = 4  
+
+" split to the right
+let g:netrw_altv = 0
 
 "bind netrw with a different command to be easier to use
 nnoremap <leader>dd :Lexplore %:p:h<CR>
@@ -242,13 +245,8 @@ function! NetrwMapping()
         "will open a directory or a file
         nmap <buffer> l <CR>
         
-        " toggle dotfiles
-        nmap <buffer> . gh
         " will close the previw window
         nmap <buffer> P <C-w>z
-        
-        " will open a file and close netrw
-        nmap <buffer> L <CR>:Lexplore<CR>
         "will just close netrw
         nmap <buffer> <Leader>dd :Lexplore<CR>
 endfunction
