@@ -185,6 +185,9 @@ call plug#begin('~/.vim/plugged')
     "systemverilog syntax
     Plug 'vhda/verilog_systemverilog.vim'
 
+    "NERDTree file 
+    Plug 'scrooloose/nerdtree'
+
 call plug#end()
 
 " }}}
@@ -206,55 +209,33 @@ let g:lightline = {
 
 " }}}
 
-" Plugin: Netrw {{{
+" Plugin: NERDTree {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File Tree
 "
 
-" prevent move file errors
-let g:netrw_keepdir = 0
+" Initial NERDTree width
+let g:NERDTreeWinSize=40
 
-" set netrw windows size as 25%
-let g:netrw_winsize = 25
+" Close NERDtree when files was opened
+let NERDTreeQuitOnOpen=1
 
-" remove banner from netrw window
-let g:netrw_banner = 0        
+" Show NERDTree bookmarks
+let NERDTreeShowBookmarks=1
 
-" set list style
-let g:netrw_liststyle = 3
+" Display arrows instead of ascii art in NERDTree
+let NERDTreeDirArrows=1
 
-" change copy command to support recursive copy
-let g:netrw_localcopydircmd = 'cp -r'
+" Change current working directory based on root directory in NERDTree
+let NERDTreeChDirMode=2
 
-" open files to the right of the browser
-let g:netrw_browse_split = 4  
+" Start NERDTree in minimal UI mode (No help lines)
+let NERDTreeMinimalUI=1
 
-" split to the right
-let g:netrw_altv = 0
-
-"bind netrw with a different command to be easier to use
-nnoremap <leader>dd :Lexplore %:p:h<CR>
-nnoremap <Leader>da :Lexplore<CR>
-
-"lets change netrws navigation
-function! NetrwMapping()
-        " go back in history
-        nmap <buffer> H u
-        " will go up in history
-        nmap <buffer> h -^
-        "will open a directory or a file
-        nmap <buffer> l <CR>
-        
-        " will close the previw window
-        nmap <buffer> P <C-w>z
-        "will just close netrw
-        nmap <buffer> <Leader>dd :Lexplore<CR>
-endfunction
-
-augroup netrw_mapping
-        autocmd!
-        autocmd filetype netrw call NetrwMapping()
-augroup END
+"bind NERDTree with a different command to be easier to use
+nnoremap <leader>da :NERDTreeToggle<CR>
+nnoremap <Leader>ds :NERDTreeFind<CR>
+nnoremap <Leader>df :NERDTreeFocus<CR>
 
 " }}}
 
