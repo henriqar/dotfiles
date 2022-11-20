@@ -44,12 +44,42 @@ test_colors:
 
 # install all dotfiles available
 .PHONY: install_all
-install_all : install_tmux install_vim install gitconfig install_screen
+install_all : install_tmux install_emacs install_vim install gitconfig install_screen
 
 # clean all dotfiles available
 .PHONY: clean_all
 clean_all : clean_tmux clean_vim clean_gitconfig clean_screen
 
+###########################################
+# Setup for Emacs
+###########################################
+
+.PHONY: install_emacs
+install_emacs :
+	$(call linker, ${CURDIR}/dotfiles/emacs/init.el, ${HOME}/.emacs)
+	@echo "$(GREEN)Installed$(RESET) emacs config file"
+
+.PHONY: force_install_emacs
+force_install_emacs :
+	$(call forced_linker, ${CURDIR}/dotfiles/emacs/init.el, ${HOME}/.emacs)
+	@echo "$(YELLOW)Forced$(RESET) $(GREEN)Install$(RESET) .tmux.conf"
+
+.PHONY: install_emacs_new_config
+install_emacs_new_config :
+	$(call linker, ${CURDIR}/dotfiles/emacs/init.el, ${HOME}/.config/emacs/init.el)
+	@echo "$(GREEN)Installed$(RESET) emacs new config file"
+
+.PHONY: force_install_emacs_new_config
+force_install_emacs_new_config :
+	$(call force_linker, ${CURDIR}/dotfiles/emacs/init.el, ${HOME}/.config/emacs/init.el)
+	@echo "$(YELLOW)Forced$(RESET) $(GREEN)Installed$(RESET) emacs new config file"
+
+.PHONY: clean_emacs
+clean_emacs :
+	@rm -f ${HOME}/.config/emacs/init.el
+	@echo "$(GREEN)Removed$(RESET) .config/emacs/init.el"
+	@rm -rf ${HOME}/.emacs
+	@echo "$(GREEN)Removed$(RESET) .emacs"
 
 ###########################################
 # Setup for VIM
