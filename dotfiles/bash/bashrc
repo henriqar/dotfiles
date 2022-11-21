@@ -164,6 +164,10 @@ export LESSOPEN='|/usr/bin/lesspipe.sh %s 2>&-'
 export LESS='-i -N -w  -z-4 -g -e -M -X -F -R -P%t?f%f \
 :stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
 
+# make gem install without sudo
+export GEM_HOME=${HOME}/.gem
+export PATH="${GEM_HOME}/bin:${PATH}"
+
 # aliases that use xtitle
 alias top='xtitle Processes on $HOST && top'
 alias make='xtitle Making $(basename $PWD) ; make'
