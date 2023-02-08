@@ -89,6 +89,8 @@ autocmd GUIEnter * set visualbell t_vb=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remappings
 :imap ;; <ESC>
+nnoremap <leader>l :bn<CR>  
+nnoremap <leader>h :bp<CR>
 
 " }}}
 
