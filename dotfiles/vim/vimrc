@@ -190,6 +190,9 @@ call plug#begin('~/.vim/plugged')
     "NERDTree file 
     Plug 'scrooloose/nerdtree'
 
+    " Ident line
+    Plug 'Yggdroot/indentLine'
+
 call plug#end()
 
 " }}}
