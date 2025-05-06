@@ -44,7 +44,7 @@ test_colors:
 
 # install all dotfiles available
 .PHONY: install_all
-install_all : install_tmux install_emacs install_vim install gitconfig install_screen
+install_all : install_tmux install_emacs install_vim install_gitconfig install_screen
 
 # clean all dotfiles available
 .PHONY: clean_all
