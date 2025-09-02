@@ -95,11 +95,12 @@ install_vim_ftplugin :
 	@mkdir -p ${HOME}/.vim/ftplugin
 	$(call linker, ${CURDIR}/dotfiles/vim/ftplugin/python.vim, ${HOME}/.vim/ftplugin/python.vim)
 	$(call linker, ${CURDIR}/dotfiles/vim/ftplugin/verilog_systemverilog.vim, ${HOME}/.vim/ftplugin/verilog_systemverilog.vim)
+	$(call linker, ${CURDIR}/dotfiles/vim/ftplugin/cpp.vim, ${HOME}/.vim/ftplugin/cpp.vim)
 	@echo "$(GREEN)Installed$(RESET) vim ftplugin folder"
 
 .PHONY: clean_vim_ftplugin
 clean_vim_ftplugin :
-	@rm -f ${HOME}/.vim/ftplugin
+	@rm -rf ${HOME}/.vim/ftplugin
 	@echo "$(GREEN)Cleaned$(RESET) vim ftplugin folder"
 
 .PHONY: install_vim

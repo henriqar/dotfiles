@@ -96,13 +96,8 @@ nnoremap <leader>h :bp<CR>
 
 " Spaces and Tabs {{{
 
-" set tabstop=4		" 4 space tab
 set expandtab		" changes tabs for spaces
-" set softtabstop=4	" 4 space tab
-" set shiftwidth=4
 set autoindent
-
-autocmd Filetype cpp setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 " }}}
 
