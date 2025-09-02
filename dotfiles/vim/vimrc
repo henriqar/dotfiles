@@ -63,14 +63,6 @@ set modeline
 
 syntax enable
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"  color theme
-"
-
-colorscheme desert
-
-" }}}
-
 " Misc {{{
 
 set backspace=indent,eol,start
@@ -127,11 +119,12 @@ set showmatch       " show mathcing in text
 "
 " ref: http://vim.wikia.com/wiki/Remove_unwanted_spaces#Automatically_removing_all_trailing_whitespace
 "
-autocmd BufWritePre *.py :%s/\s\+$//e
 autocmd BufWritePre *.sv :%s/\s\+$//e
 autocmd BufWritePre *.v :%s/\s\+$//e
-
-autocmd BufNewFile,BufRead *.u setfiletype uwu
+autocmd BufWritePre *.py :%s/\s\+$//e
+autocmd BufWritePre *.cpp v:%s/\s\+$//e
+autocmd BufWritePre *.h v:%s/\s\+$//e
+autocmd BufWritePre *.hpp v:%s/\s\+$//e
 
 " }}}
 
@@ -188,6 +181,9 @@ call plug#begin('~/.vim/plugged')
     " Ident line
     Plug 'Yggdroot/indentLine'
 
+    " Nord theme
+    Plug 'arcticicestudio/nord-vim'
+
 call plug#end()
 
 " }}}
@@ -198,6 +194,7 @@ call plug#end()
 set laststatus=2
 
 let g:lightline = {
+      \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -236,6 +233,14 @@ let NERDTreeMinimalUI=1
 nnoremap <leader>da :NERDTreeToggle<CR>
 nnoremap <Leader>ds :NERDTreeFind<CR>
 nnoremap <Leader>df :NERDTreeFocus<CR>
+
+" }}}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  color theme
+"
+
+colorscheme nord
 
 " }}}
 
